@@ -1,0 +1,44 @@
+.books-form {
+    min-width: 400px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: auto;
+    padding: 20px 5%;
+    border: solid 1px #222;
+
+    .error {
+        margin-bottom: 0;
+        color: red;
+        font-size: 14px;
+        text-align: end;
+    }
+
+    .input-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        // margin: 10px 0;
+
+        input,
+        textarea {
+            width: 50%;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        textarea {
+            resize: vertical;
+            max-height: 300px;
+            min-height: 100px;
+        }
+    }
+    .button {
+        border: none;
+        height: 30px;
+        width: 150px;
+        margin-top: 20px;
+        color: white;
+        background-color: red;
+        cursor: pointer;
+    }
+}

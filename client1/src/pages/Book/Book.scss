@@ -1,0 +1,79 @@
+.book-page-component {
+
+    .flex {
+        display: flex;
+        justify-content: space-between;
+
+        .column {
+            padding: 10px;
+            padding-bottom: 50px;
+            box-sizing: border-box  ;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .fa-check-square {
+                color: green;
+            }
+
+            .rating, .favorites {
+                width: 200px;
+                padding: 10px;
+                margin: 10px;
+                display: flex;
+                justify-content: space-between  ;
+                align-items: center;
+                cursor: pointer;
+                p {
+                    margin: 0;
+                }
+            }
+            .rating {
+                border: solid 1px #f5c518;
+                color: #f5c518;
+                input {
+                    background: none;
+                    border: none;
+                    outline: none;
+                    height: 100%;
+                    color: #b9b9b9;
+                    width: 20%;
+                    
+                }
+            }
+
+            .favorites {
+                border: solid 1px red;
+                color: red;
+            }
+
+            ul {
+                text-align: start;
+                li {
+                    display: flex;
+                    justify-content: space-between;
+                    cursor: pointer;
+                    i {
+                        padding-left: 20px;
+                    }
+                }
+                li:hover {
+                    color: green;
+                }
+            }
+            img {
+                height: 500px;
+            }
+        }
+    }
+    .button {
+        border: none;
+        height: 30px;
+        width: 150px;
+        margin-bottom: 20px;
+        color: white;
+        background-color: red;
+        cursor: pointer;
+    }
+}
