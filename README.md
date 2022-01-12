@@ -1,3 +1,41 @@
+# Installation
+
+Below is an example of how you can download and setup the project local on your computer.
+
+1. **Clone the repo**
+   ```sh
+   git clone https://github.com/BoykoPetevBoev/Books-and-Movies.git
+   ```
+2. **Setup the client**
+    - Navigate to client folder
+        ```sh
+            cd client
+        ```
+    - Install NPM packages
+        ```sh
+            npm install
+        ```
+    - Start the application
+        ```sh
+            npm start
+        ```
+3. **Setup the server**
+    - Navigate to server folder
+        ```sh
+            cd server
+        ```
+    - Install NPM packages
+        ```sh
+            npm install
+        ```
+    - Start the server
+        ```sh
+            npm start
+        ```
+4. **Go to http://localhost:3000 and enjoy**
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
