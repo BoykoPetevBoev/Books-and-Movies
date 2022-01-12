@@ -1,0 +1,17 @@
+.ul {
+    text-align: start;
+    li {
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+        i {
+            padding-left: 20px;
+        }
+    }
+    li:hover {
+        color: green;
+    }
+    .fa-check-square {
+        color: green;
+    }
+}

@@ -1,0 +1,17 @@
+.books-form {
+    min-width: 400px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: auto;
+    padding: 20px 5%;
+    border: solid 1px #222;
+    .button {
+        border: none;
+        height: 30px;
+        width: 150px;
+        margin-top: 20px;
+        color: white;
+        background-color: red;
+        cursor: pointer;
+    }
+}

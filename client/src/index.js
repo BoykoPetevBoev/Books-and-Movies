@@ -1,28 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import { CatalogProvider } from './context/CatalogCtx';
 import reportWebVitals from './reportWebVitals';
-
 import './index.scss';
 
+import { BookProvider } from './context/BookCtx';
+import { MovieProvider } from './context/MovieCtx';
+
 import Home from './pages/Home/Home';
+import Book from './pages/Book/Book';
 import Books from './pages/Books/Books';
 import Movies from './pages/Movies/Movies';
-import Book from './pages/Book/Book';
+import Movie from './pages/Movie/Movie';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <CatalogProvider>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/books" element={<Books />} />
-          <Route path="/books/:id" element={<Book />} />
-          <Route path="/movies" element={<Movies />} />
-        </Routes>
-      </CatalogProvider>
+      <BookProvider>
+        <MovieProvider>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/books" element={<Books />} />
+            <Route path="/books/:id" element={<Book />} />
+            <Route path="/movies" element={<Movies />} />
+            <Route path="/movies/:id" element={<Movie />} />
+          </Routes>
+        </MovieProvider>
+      </BookProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

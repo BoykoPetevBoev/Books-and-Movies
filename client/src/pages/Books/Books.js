@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { api } from '../../services/requesterService.js'
-import { useCatalog } from '../../context/CatalogCtx.js';
+import { useBook } from '../../context/BookCtx.js';
 import './Books.scss'
-
-import BooksForm from '../../components/BooksForm/BooksForm';
+import BooksForm from '../../components/forms/BooksForm/BooksForm';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer.js';
-import BooksList from '../../components/BooksList/BooksList.js';
+import CatalogList from '../../components/CatalogList/CatalogList.js';
 
 const Books = () => {
 
@@ -15,54 +14,53 @@ const Books = () => {
         getFavoritesBooks,
         getReadedBooks,
         getUnreadBooks,
-        getCurrentlyReadingBooks } = useCatalog();
+        getCurrentlyReadingBooks } = useBook();
 
     useEffect(() => {
         api.get('books')
             .then(data => setBooksData(data))
             .catch(err => console.error(err))
-    }, [])
+    }, [setBooksData])
 
     return (
-        <div>
+        <div className='books-page-component'>
             <Header />
 
-
             <div className='background'>
-                <div className='section'>
-
-                    <h2>Books Catalog</h2>
-                    <h3>Recommended</h3>
-                    <p>Looking for a new and interesting book to read?</p>
-                    <BooksList data={getUnreadBooks()} />
-
-                </div>
+                <h2>Books Catalog</h2>
+                <CatalogList
+                    data={getUnreadBooks()}
+                    title="Recommended"
+                    description="Looking for a new and interesting book to read?"
+                    type="books"
+                />
             </div>
 
             <div className='background'>
-                <div className='section'>
-                    <h3>Favorites</h3>
-                    <p>This list shows all the books you have added to favorites. If you want to change it please go to the book you want and check the "favorites" box.</p>
-                    <BooksList data={getFavoritesBooks()} />
-                </div>
+                <CatalogList
+                    data={getFavoritesBooks()}
+                    title="Favorites"
+                    description="This list shows all the books you have added to favorites. If you want to change it please go to the book you want and check the 'favorites' box."
+                    type="books"
+                />
             </div>
 
             <div className='background'>
-                <div className='section'>
-                    <h3>You are currently reading</h3>
-                    <p>This list contains the books you are currently reading.</p>
-                    <BooksList data={getCurrentlyReadingBooks()} />
-
-                </div>
+                <CatalogList
+                    data={getCurrentlyReadingBooks()}
+                    title="You are currently reading"
+                    description="This list contains the books you are currently reading."
+                    type="books"
+                />
             </div>
 
             <div className='background'>
-                <div className='section'>
-                    <h3>Readed books</h3>
-                    <p>All the books you have already read can be viewed in this section.</p>
-                    <BooksList data={getReadedBooks()} />
-
-                </div>
+                <CatalogList
+                    data={getReadedBooks()}
+                    title="Readed books"
+                    description="All the books you have already read can be viewed in this section."
+                    type="books"
+                />
             </div>
 
             <div className='background'>
@@ -74,7 +72,6 @@ const Books = () => {
             </div>
 
             <Footer />
-
         </div>
     );
 };

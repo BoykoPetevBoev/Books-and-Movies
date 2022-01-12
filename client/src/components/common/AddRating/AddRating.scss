@@ -1,0 +1,23 @@
+.add-rating{
+    width: 200px;
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    justify-content: space-between  ;
+    align-items: center;
+    border: solid 1px #f5c518;
+    color: #f5c518;
+    cursor: pointer;
+    p {
+        margin: 0;
+    }
+    input {
+        background: none;
+        border: none;
+        outline: none;
+        height: 100%;
+        color: #b9b9b9;
+        width: 20%;
+    }
+}
+

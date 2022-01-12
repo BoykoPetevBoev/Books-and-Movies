@@ -1,85 +1,87 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { api } from '../../services/requesterService.js'
-import { useBook } from '../../context/BookCtx';
-import './Book.scss'
+import { useMovie } from '../../context/MovieCtx';
+import './Movie.scss'
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import AddRating from '../../components/common/AddRating/AddRating.js';
+import AddToFavorites from '../../components/common/AddToFavorites/AddToFavorites.js';
 import UnorderedList from '../../components/common/UnorderedList/UnorderedList.js';
-import AddToFavorites from '../../components/common/AddToFavorites/AddToFavorites';
 
-const Book = () => {
+const Movie = () => {
 
     const params = useParams();
-    const { getBookById } = useBook();
+    const { getMovieById } = useMovie();
 
-    const [book, setBook] = useState(null);
+    const [movie, setMovie] = useState(null);
     const [hasChanges, setHasChanged] = useState(false);
 
     useEffect(() => {
-        setBook(getBookById(params.id));
-    }, [getBookById, params])
+        console.log('Movie');
+        setMovie(getMovieById(params.id));
+    }, [getMovieById, params])
 
     const handleRating = (e) => {
         setHasChanged(true);
-        setBook(oldState => ({ ...oldState, rating: e.target.value }))
+        setMovie(oldState => ({ ...oldState, rating: e.target.value }))
     }
 
     const handleAddToFavorites = () => {
         setHasChanged(true);
-        setBook(oldState => ({ ...oldState, favorites: !oldState.favorites }))
+        setMovie(oldState => ({ ...oldState, favorites: !oldState.favorites }))
     }
 
-    const handleIsReaded = (id) => {
+    const handleIsWatched = (id) => {
+        const changeEpisode = (episode) => {
+            return episode._id === id
+                ? { ...episode, isWatched: !episode.isWatched }
+                : episode
+        }
         setHasChanged(true);
-        setBook(oldState => ({
+        setMovie(oldState => ({
             ...oldState,
-            chapters: oldState.chapters.map(chapter => {
-                return chapter._id === id
-                    ? { ...chapter, isReaded: !chapter.isReaded }
-                    : chapter
-            })
+            episodes: oldState.episodes.map(episode => changeEpisode(episode))
         }))
     }
 
     const handleSaveChanges = () => {
         setHasChanged(false)
-        api.put('books', book)
+        api.put('movies', movie)
             .then(data => console.log(data))
             .catch(err => console.error(err))
     }
 
-    if (!book) return <Header />
+    if (!movie) return <Header />
 
     return (
-        <div className='book-page-component'>
+        <div className='movie-page-component'>
             <Header />
 
             <div className='section'>
-                <h2>{book.title}</h2>
-                <p>{book.description}</p>
+                <h2>{movie.title}</h2>
+                <p>{movie.description}</p>
 
                 <div className='flex'>
                     <div className='column'>
-                        <h3>Chapters</h3>
-                        <UnorderedList 
-                            array={book.chapters}
-                            onClick={handleIsReaded}
+                        <h3>Episodes</h3>
+                        <UnorderedList
+                            array={movie.episodes}
+                            onClick={handleIsWatched}
                         />
                         <div className='flex'>
                             <AddRating
-                                rating={book.rating}
+                                rating={movie.rating}
                                 onChange={handleRating}
                             />
                             <AddToFavorites
-                                isInFavorites={book.favorites}
+                                isInFavorites={movie.favorites}
                                 onClick={handleAddToFavorites}
                             />
                         </div>
                     </div>
                     <div className='column'>
-                        <img src={book.image} alt='book' />
+                        <img src={movie.image} alt='movie' />
                     </div>
                 </div>
 
@@ -87,7 +89,6 @@ const Book = () => {
                     ? <button className='button' onClick={handleSaveChanges}>Save</button>
                     : null
                 }
-
             </div>
 
             <Footer />
@@ -95,4 +96,4 @@ const Book = () => {
     );
 };
 
-export default Book;
+export default Movie;

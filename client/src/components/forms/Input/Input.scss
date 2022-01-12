@@ -1,0 +1,19 @@
+.input-holder {
+    .error {
+        margin-bottom: 0;
+        color: red;
+        font-size: 14px;
+        text-align: end;
+    }
+    .input-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        input{
+            width: 50%;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    }
+}
